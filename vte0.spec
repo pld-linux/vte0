@@ -5,10 +5,11 @@ Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
 Version:	0.10.25
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/0.10/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-keys.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	Xft-devel >= 2.1-3
@@ -77,7 +78,8 @@ Python VTE library.
 Biblioteka VTE dla pythona.
 
 %prep
-%setup  -q
+%setup -q
+%patch0 -p1
 
 %build
 glib-gettextize --copy --force
