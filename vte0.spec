@@ -3,13 +3,15 @@ Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
 Version:	0.11.11
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.11/%{name}-%{version}.tar.bz2
 # Source0-md5:	4d7a3674df5b8be7f1adffa981c1fc3d
 Patch0:		%{name}-keys.patch
 Patch1:		%{name}-localenames.patch
+Patch2:		%{name}-atktextselection.patch
+Patch3:		%{name}-types-include.patch
 BuildRequires:	OpenGL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -86,6 +88,8 @@ Biblioteka VTE dla pythona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p0
 
 mv -f po/{no,nb}.po
 
