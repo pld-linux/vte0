@@ -9,9 +9,9 @@ Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/0.10/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-Xft2.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	Xft-devel >= 2.0-5
 BuildRequires:	glib2-devel >= 2.0.7
 BuildRequires:	gtk+2-devel >= 2.0.9
 BuildRequires:	libart_lgpl-devel >= 2.3.10
@@ -19,10 +19,6 @@ BuildRequires:	libtool
 BuildRequires:	python-pygtk-devel >= 1.99.13
 Requires(pre):	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
-%define         _gtkdocdir      %{_defaultdocdir}/gtk-doc/html
 
 %description
 The vte package contains a terminal widget for GTK+. It's used by
@@ -82,7 +78,6 @@ Biblioteka VTE dla pythona.
 
 %prep
 %setup  -q
-%patch0 -p1
 
 %build
 %configure \
