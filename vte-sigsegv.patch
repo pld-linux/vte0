@@ -1,0 +1,11 @@
+--- vte-0.11.0.orig/src/vte.c	2003-03-07 18:51:21.000000000 +0100
++++ vte-0.11.0/src/vte.c	2003-04-04 01:34:24.000000000 +0200
+@@ -7437,7 +7437,7 @@
+ 		}
+ #endif
+ 		vte_terminal_process_incoming(terminal);
+-	} else {
++	} else if (_vte_buffer_length(terminal->pvt->incoming) > 0) {
+ 		/* Wait no more than N milliseconds for more data.  We don't
+ 		 * touch the timeout if we're already slated to call it again
+ 		 * because if the output were carefully timed, we could
