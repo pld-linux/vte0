@@ -7,7 +7,7 @@ Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z widgetem terminala VTE
 Name:		vte
 Version:	0.10.4
-Release:	0.1
+Release:	0.5
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/0.10/%{name}-%{version}.tar.bz2
@@ -24,6 +24,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define         _gtkdocdir      %{_defaultdocdir}/gtk-doc/html
 
 %description
 The vte package contains a terminal widget for GTK+. It's used by
@@ -91,7 +92,10 @@ Biblioteka vte dla pythona.
 #%{__aclocal} -I %{_aclocaldir}/gnome2-macros
 #%{__autoconf}
 #%{__automake}
-%configure
+%configure \
+	--enable-gtk-doc \
+	--with-html-path=%{_gtkdocdir} 
+	
 %{__make} pythonsiteexecdir=%{py_sitedir}
 
 %install
@@ -100,7 +104,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir} \
-	pythonsiteexecdir=%{py_sitedir}
+	pythonsiteexecdir=%{py_sitedir} \
+	HTML_DIR=%{_gtkdocdir}
 
 %find_lang vte
 
@@ -125,6 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.la
 %{_includedir}/*
 %{_pkgconfigdir}/*
+%{_gtkdocdir}/*
 
 %files static
 %defattr(644,root,root,755)
