@@ -4,14 +4,14 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.10.8
+Version:	0.10.10
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/0.10/%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	Xft-devel >= 2.1-2
+BuildRequires:	Xft-devel >= 2.1-3
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libart_lgpl-devel >= 2.3.10
@@ -80,6 +80,12 @@ Biblioteka VTE dla pythona.
 %setup  -q
 
 %build
+glib-gettextize --copy --force
+%{__libtoolize}
+%{__aclocal}
+%{__autoheader}
+%{__automake}
+%{__autoconf}
 %configure \
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} 
