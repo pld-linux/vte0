@@ -1,11 +1,12 @@
---- vte-0.11.10/configure.in.orig	Mon Jun 16 23:44:32 2003
-+++ vte-0.11.10/configure.in	Mon Feb  2 12:40:42 2004
+diff -urN vte-0.11.11.orig/configure.in vte-0.11.11/configure.in
+--- vte-0.11.11.orig/configure.in	2004-05-06 13:31:05.485820120 +0200
++++ vte-0.11.11/configure.in	2004-05-06 13:31:21.482388272 +0200
 @@ -9,7 +9,7 @@
  AM_MAINTAINER_MODE
  
  AM_PROG_LIBTOOL
--ALL_LINGUAS="am az be bg bn ca cs cy da de el es fa fi fr he hu id is it ja ko li lv mk ml mn ms nl no pl pt pt_BR ro ru sk sl sq sr sr@Latn sv tr uk vi zh_CN zh_TW"
-+ALL_LINGUAS="am az be bg bn ca cs cy da de el es fa fi fr he hu id is it ja ko li lv mk ml mn ms nl nb pl pt pt_BR ro ru sk sl sq sr sr@Latn sv tr uk vi zh_CN zh_TW"
+-ALL_LINGUAS="am ar az be bg bn ca cs cy da de el en_CA en_GB es et eu fa fi fr ga gu he hr hu id is it ja ko li lt lv mk ml mn ms ne nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv tr uk vi wa zh_CN zh_TW"
++ALL_LINGUAS="am ar az be bg bn ca cs cy da de el en_CA en_GB es et eu fa fi fr ga gu he hr hu id is it ja ko li lt lv mk ml mn ms nb ne nl nn pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv tr uk vi wa zh_CN zh_TW"
  
  AM_GLIB_GNU_GETTEXT
- 
+ AC_CHECK_DECLS(bind_textdomain_codeset,,,[#include "libintl.h"])
