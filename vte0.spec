@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_with	glx # build for glX support
 #
-%include        /usr/lib/rpm/macros.python
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
