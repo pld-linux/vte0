@@ -1,0 +1,11 @@
+--- vte-0.11.10/configure.in.orig	Mon Jun 16 23:44:32 2003
++++ vte-0.11.10/configure.in	Mon Feb  2 12:40:42 2004
+@@ -9,7 +9,7 @@
+ AM_MAINTAINER_MODE
+ 
+ AM_PROG_LIBTOOL
+-ALL_LINGUAS="am az be bg bn ca cs cy da de el es fa fi fr he hu id is it ja ko li lv mk ml mn ms nl no pl pt pt_BR ro ru sk sl sq sr sr@Latn sv tr uk vi zh_CN zh_TW"
++ALL_LINGUAS="am az be bg bn ca cs cy da de el es fa fi fr he hu id is it ja ko li lv mk ml mn ms nl nb pl pt pt_BR ro ru sk sl sq sr sr@Latn sv tr uk vi zh_CN zh_TW"
+ 
+ AM_GLIB_GNU_GETTEXT
+ 
