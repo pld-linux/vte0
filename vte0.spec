@@ -17,6 +17,7 @@ BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libtool
+BuildRequires:  rpm-pythonprov
 BuildRequires:	python-pygtk-devel >= 1.99.13
 Requires(pre):	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
