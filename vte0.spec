@@ -72,7 +72,8 @@ Static version of vte libraries.
 Statyczna wersja bibliotek vte.
 
 %prep
-%setup -q
+%setup  -q
+%patch0 -p1
 
 %build
 #rm -f missing
