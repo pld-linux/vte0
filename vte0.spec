@@ -1,13 +1,11 @@
-# TODO:
-# - fix gtk-doc location
 
 %include        /usr/lib/rpm/macros.python
 
 Summary:	VTE terminal widget library
-Summary(pl):	Biblioteka z widgetem terminala VTE
+Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
 Version:	0.10.4
-Release:	0.5
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/0.10/%{name}-%{version}.tar.bz2
@@ -31,17 +29,17 @@ The vte package contains a terminal widget for GTK+. It's used by
 gnome-terminal among other programs.
 
 %description -l pl
-Ten pakiet zawiera widget terminala dla GTK+. Jest u¿ywany przez
+Ten pakiet zawiera kontrolkê terminala dla GTK+. Jest u¿ywany przez
 gnome-terminal oraz inne programy.
 
 %package devel
-Summary:	Headers for vte
-Summary(pl):	Pliki nag³ówkowe vte
+Summary:	Headers for VTE
+Summary(pl):	Pliki nag³ówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	glib2-devel >= %{glib2_version}
-Requires:	gtk+2-devel >= %{gtk2_version}
-Requires:	libart_lgpl-devel >= %{libart_lgpl_version}
+Requires:	glib2-devel >= 2.0.7
+Requires:	gtk+2-devel >= 2.0.8
+Requires:	libart_lgpl-devel >= 2.3.10
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
 %description devel
@@ -58,40 +56,35 @@ Pliki nag³ówkowe potrzebne do kompilowania programów u¿ywaj±cych
 vte.
 
 %package static
-Summary:	Static vte library
-Summary(pl):	Statyczna biblioteka vte
+Summary:	Static VTE library
+Summary(pl):	Statyczna biblioteka VTE
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
 Conflicts:	gnome-libs-static < 1.4.1.2
 
 %description static
-Static version of vte libraries.
+Static version of VTE libraries.
 
 %description static -l pl
-Statyczna wersja bibliotek vte.
+Statyczna wersja bibliotek VTE.
 
 %package -n python-vte
-Summary:	Python vte library
-Summary(pl):	Biblioteka vte dla pythona
+Summary:	Python VTE module
+Summary(pl):	Modu³ VTE dla pythona
 Group:		Libraries
 Requires:	%{name} = %{version}
 
 %description -n python-vte
-Python vte library.
+Python VTE library.
 
 %description -n python-vte -l pl
-Biblioteka vte dla pythona.
+Biblioteka VTE dla pythona.
 
 %prep
 %setup  -q
 %patch0 -p1
 
 %build
-#rm -f missing
-#%{__libtoolize}
-#%{__aclocal} -I %{_aclocaldir}/gnome2-macros
-#%{__autoconf}
-#%{__automake}
 %configure \
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} 
