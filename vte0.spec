@@ -97,15 +97,15 @@ LDFLAGS="-lncurses"
 	--with-pangox \
 	--with-glX \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} 
-%{__make} 
+	--with-html-dir=%{_gtkdocdir}
+%{__make}
 #pythonsiteexecdir=%{py_sitedir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT 
+	DESTDIR=$RPM_BUILD_ROOT
 #	pythonsiteexecdir=%{py_sitedir}
 
 %find_lang vte
