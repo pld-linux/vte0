@@ -4,7 +4,7 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.10.16
+Version:	0.10.17
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
@@ -33,8 +33,8 @@ Summary:	Headers for VTE
 Summary(pl):	Pliki nag³ówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	glib2-devel >= 2.0.7
-Requires:	gtk+2-devel >= 2.0.8
+Requires:	glib2-devel >= 2.2.0
+Requires:	gtk+2-devel >= 2.2.0
 Requires:	libart_lgpl-devel >= 2.3.10
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
