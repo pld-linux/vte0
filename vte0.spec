@@ -111,6 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/vte
 %attr(755,root,root) %{_libdir}/vte/*
 %attr(2755,root,utmp) %{_libdir}/gnome-pty-helper
+%{_datadir}/vte
 
 %files devel
 %defattr(644,root,root,755)
