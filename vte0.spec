@@ -2,15 +2,15 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.11.10
-Release:	3
+Version:	0.11.11
+Release:	0.9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.11/%{name}-%{version}.tar.bz2
-# Source0-md5:	71facdedd477749908402a6931d36e64
+# Source0-md5:	4d7a3674df5b8be7f1adffa981c1fc3d
 Patch0:		%{name}-keys.patch
 Patch1:		%{name}-localenames.patch
-Patch2:		%{name}-link.patch
+#Patch2:		%{name}-link.patch
 BuildRequires:	OpenGL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -86,7 +86,7 @@ Biblioteka VTE dla pythona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 
 mv -f po/{no,nb}.po
 
@@ -102,6 +102,7 @@ CFLAGS="-I/usr/include/ncurses"
 	--with-xft2 \
 	--with-pangox \
 	--with-glX \
+	--with-default-emulation=xterm \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -146,4 +147,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python-vte
 %defattr(644,root,root,755)
-%attr(755,root,root) %{py_sitedir}/*.so
+%attr(755,root,root) %{py_sitedir}/gtk-2.0/*.so
