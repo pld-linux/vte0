@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_with	glx # build for glX support
+#
 %include        /usr/lib/rpm/macros.python
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
@@ -13,7 +17,7 @@ Patch1:		%{name}-localenames.patch
 Patch2:		%{name}-atktextselection.patch
 Patch3:		%{name}-types-include.patch
 Patch4:		%{name}-performance.patch
-BuildRequires:	OpenGL-devel
+%{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 2.2.0
@@ -106,7 +110,7 @@ CFLAGS="-I/usr/include/ncurses"
 %configure \
 	--with-xft2 \
 	--with-pangox \
-	--with-glX \
+	%{?with_glx:--with-glX} \
 	--with-default-emulation=xterm \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
