@@ -4,7 +4,7 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.11.6
+Version:	0.11.7
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
@@ -92,19 +92,21 @@ glib-gettextize --copy --force
 CFLAGS="-I/usr/include/ncurses"
 LDFLAGS="-lncurses"
 %configure \
+	--with-xft2 \
+	--with-pangox \
+	--with-glX \
 	--enable-gtk-doc \
-	--with-html-path=%{_gtkdocdir} 
+	--with-html-dir=%{_gtkdocdir} 
 	
-%{__make} pythonsiteexecdir=%{py_sitedir}
+%{__make} 
+#pythonsiteexecdir=%{py_sitedir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir} \
-	pythonsiteexecdir=%{py_sitedir} \
-	HTML_DIR=%{_gtkdocdir}
+	DESTDIR=$RPM_BUILD_ROOT 
+#	pythonsiteexecdir=%{py_sitedir}
 
 %find_lang vte
 
