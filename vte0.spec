@@ -1,20 +1,19 @@
-
 %include        /usr/lib/rpm/macros.python
-
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
 Version:	0.11.10
-Release:	2
+Release:	3
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.11/%{name}-%{version}.tar.bz2
 # Source0-md5:	71facdedd477749908402a6931d36e64
 Patch0:		%{name}-keys.patch
+Patch1:		%{name}-localenames.patch
+Patch2:		%{name}-link.patch
+BuildRequires:	OpenGL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	OpenGL-devel
-BuildRequires:	xft-devel >= 2.1.2
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	gtk-doc
@@ -22,6 +21,7 @@ BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libtool
 BuildRequires:	rpm-pythonprov
 BuildRequires:	python-pygtk-devel >= 1.99.13
+BuildRequires:	xft-devel >= 2.1.2
 Requires(pre):	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -85,6 +85,10 @@ Biblioteka VTE dla pythona.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+
+mv -f po/{no,nb}.po
 
 %build
 glib-gettextize --copy --force
@@ -94,7 +98,6 @@ glib-gettextize --copy --force
 %{__automake}
 %{__autoconf}
 CFLAGS="-I/usr/include/ncurses"
-LDFLAGS="-lncurses"
 %configure \
 	--with-xft2 \
 	--with-pangox \
@@ -102,14 +105,14 @@ LDFLAGS="-lncurses"
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
-#pythonsiteexecdir=%{py_sitedir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-#	pythonsiteexecdir=%{py_sitedir}
+
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
 
 %find_lang vte
 
