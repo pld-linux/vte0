@@ -7,7 +7,7 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z widgetem terminala VTE
 Name:		vte
-Version:	0.10.3
+Version:	0.10.4
 Release:	0.1
 License:	LGPL
 Group:		X11/Libraries
@@ -91,6 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
+%find_lang vte
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -98,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files
+%files -f vte.lang
 %defattr(644,root,root,755)
 %doc NEWS README AUTHORS
 %attr(755,root,root) %{_bindir}/vte
