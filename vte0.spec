@@ -1,8 +1,5 @@
 # TODO:
 # - fix gtk-doc location
-%define		gtk2_version		2.0.3
-%define		glib2_version		2.0.3
-%define		libart_lgpl_version	2.3.8
 
 %include        /usr/lib/rpm/macros.python
 
@@ -17,11 +14,10 @@ Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/0.10/%{name}-%{version}.t
 Patch0:		%{name}-Xft2.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= %{glib2_version}
-BuildRequires:	gtk+2-devel >= %{gtk2_version}
-BuildRequires:	libart_lgpl-devel >= %{libart_lgpl_version}
+BuildRequires:	glib2-devel >= 2.0.7
+BuildRequires:	gtk+2-devel >= 2.0.9
+BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libtool
-BuildRequires:	gnome-common
 BuildRequires:	python-pygtk-devel >= 1.99.13
 Requires(pre):	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -125,8 +121,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.la
 %{_includedir}/*
 %{_pkgconfigdir}/*
 
@@ -135,4 +131,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.a
 
 %files -n python-vte
-%{py_sitedir}/*.so
+%defattr(644,root,root,755)
+%attr(755,root,root) %{py_sitedir}/*.so
