@@ -4,6 +4,8 @@
 %define		glib2_version		2.0.3
 %define		libart_lgpl_version	2.3.8
 
+%include        /usr/lib/rpm/macros.python
+
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z widgetem terminala VTE
 Name:		vte
@@ -71,6 +73,18 @@ Static version of vte libraries.
 %description static -l pl
 Statyczna wersja bibliotek vte.
 
+%package -n python-vte
+Summary:	Python vte library
+Summary(pl):	Biblioteka vte dla pythona
+Group:		Libraries
+Requires:	%{name} = %{version}
+
+%description -n python-vte
+Python vte library.
+
+%description -n python-vte -l pl
+Biblioteka vte dla pythona.
+
 %prep
 %setup  -q
 %patch0 -p1
@@ -82,14 +96,15 @@ Statyczna wersja bibliotek vte.
 #%{__autoconf}
 #%{__automake}
 %configure
-%{__make}
+%{__make} pythonsiteexecdir=%{py_sitedir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	pkgconfigdir=%{_pkgconfigdir} \
+	pythonsiteexecdir=%{py_sitedir}
 
 %find_lang vte
 
@@ -104,8 +119,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc NEWS README AUTHORS
 %attr(755,root,root) %{_bindir}/vte
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-# FIXME: move to proper place
-#%{_libdir}/python*
 %dir %{_libdir}/vte
 %attr(755,root,root) %{_libdir}/vte/*
 %attr(2755,root,utmp) %{_libdir}/gnome-pty-helper
@@ -120,3 +133,6 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files -n python-vte
+%{py_sitedir}/*.so
