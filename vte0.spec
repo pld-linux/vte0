@@ -6,7 +6,7 @@ Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
 Version:	0.11.12
-Release:	0.1
+Release:	0.2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.11/%{name}-%{version}.tar.bz2
@@ -18,12 +18,15 @@ Patch0:		%{name}-keys.patch
 %{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gtk+2-devel >= 2:2.2.0
 BuildRequires:	gtk-doc
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libtool
-BuildRequires:	rpm-pythonprov
+BuildRequires:	ncurses-devel
+BuildRequires:	pkgconfig
+BuildRequires:	python
 BuildRequires:	python-pygtk-devel >= 1.99.13
 BuildRequires:	xft-devel >= 2.1.2
 Requires(pre):	utempter
