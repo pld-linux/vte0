@@ -86,6 +86,8 @@ glib-gettextize --copy --force
 %{__autoheader}
 %{__automake}
 %{__autoconf}
+CFLAGS="-I/usr/include/ncurses"
+LDFLAGS="-lncurses"
 %configure \
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} 
