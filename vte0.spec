@@ -3,14 +3,13 @@ Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
 Version:	0.11.11
-Release:	0.9
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.11/%{name}-%{version}.tar.bz2
 # Source0-md5:	4d7a3674df5b8be7f1adffa981c1fc3d
 Patch0:		%{name}-keys.patch
 Patch1:		%{name}-localenames.patch
-#Patch2:		%{name}-link.patch
 BuildRequires:	OpenGL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -37,7 +36,7 @@ gnome-terminal oraz inne programy.
 Summary:	Headers for VTE
 Summary(pl):	Pliki nag³ówkowe VTE
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 2.2.0
 Requires:	gtk+2-devel >= 2.2.0
 Requires:	libart_lgpl-devel >= 2.3.10
@@ -61,7 +60,7 @@ vte.
 Summary:	Static VTE library
 Summary(pl):	Statyczna biblioteka VTE
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 Conflicts:	gnome-libs-static < 1.4.1.2
 
 %description static
@@ -74,7 +73,8 @@ Statyczna wersja bibliotek VTE.
 Summary:	Python VTE module
 Summary(pl):	Modu³ VTE dla pythona
 Group:		Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
+Requires:	python-pygtk-gtk >= 1.99.13
 
 %description -n python-vte
 Python VTE library.
@@ -86,7 +86,6 @@ Biblioteka VTE dla pythona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
 
 mv -f po/{no,nb}.po
 
@@ -113,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
 
 %find_lang vte
 
