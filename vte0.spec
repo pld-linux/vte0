@@ -5,15 +5,15 @@ Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
 Version:	0.10.5
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/0.10/%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	Xft-devel >= 2.0-5
-BuildRequires:	glib2-devel >= 2.0.7
-BuildRequires:	gtk+2-devel >= 2.0.9
+BuildRequires:	Xft-devel >= 2.0-6
+BuildRequires:	glib2-devel >= 2.1.3
+BuildRequires:	gtk+2-devel >= 2.1.3
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libtool
 BuildRequires:	python-pygtk-devel >= 1.99.13
