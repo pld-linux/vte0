@@ -5,18 +5,16 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.11.11
-Release:	11
+Version:	0.11.12
+Release:	0.1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.11/%{name}-%{version}.tar.bz2
-# Source0-md5:	4d7a3674df5b8be7f1adffa981c1fc3d
+Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.11/%{name}-%{version}.tar.bz2
+# Source0-md5:	2a9c7cf110342b7c5f414343d2ecffc1
 Patch0:		%{name}-keys.patch
-Patch1:		%{name}-localenames.patch
-Patch2:		%{name}-atktextselection.patch
-Patch3:		%{name}-types-include.patch
-Patch4:		%{name}-performance.patch
-Patch5:		%{name}-nozvt.patch
+#Patch1:		%{name}-atktextselection.patch
+#Patch2:		%{name}-types-include.patch
+#Patch3:		%{name}-nozvt.patch
 %{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -93,13 +91,9 @@ Biblioteka VTE dla pythona.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p0
-%patch4 -p0
-%patch5 -p1
-
-mv -f po/{no,nb}.po
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p0
 
 %build
 glib-gettextize --copy --force
@@ -125,6 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang vte
 
