@@ -27,6 +27,7 @@ BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python
 BuildRequires:	python-pygtk-devel >= 1.99.13
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xft-devel >= 2.1.2
 Requires(pre):	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
