@@ -45,10 +45,11 @@ Summary:	Headers for VTE
 Summary(pl):	Pliki nag³ówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	OpenGL-devel
 Requires:	glib2-devel >= 2.2.0
 Requires:	gtk+2-devel >= 2.2.0
 Requires:	libart_lgpl-devel >= 2.3.10
-Requires:	OpenGL-devel
+Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
 %description devel
