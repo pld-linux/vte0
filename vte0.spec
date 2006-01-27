@@ -13,6 +13,7 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.11/%{name}-%{version}.tar.
 # Source0-md5:	ce5c5bf91da638547ce093fe66622c37
 Patch0:		%{name}-keys.patch
 Patch1:		%{name}-nozvt.patch
+Patch2:		%{name}-pkgconfig.patch
 %{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -95,6 +96,7 @@ Biblioteka VTE dla pythona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1 -R
 
 %build
 %{__glib_gettextize}
