@@ -1,0 +1,13 @@
+diff -urN vte-0.11.15.orig/vte.pc.in vte-0.11.15/vte.pc.in
+--- vte-0.11.15.orig/vte.pc.in	2004-04-30 20:48:18.000000000 +0200
++++ vte-0.11.15/vte.pc.in	2005-11-23 15:29:35.000000000 +0100
+@@ -8,6 +8,7 @@
+ Name: vte
+ Description: Vte terminal widget.
+ Version: @VERSION@
+-Requires: @NEEDEDPACKAGES@
+-Libs: -L${libdir} -lvte @FT2_LIBS@ @OTHERLIBS@
++Requires.private: @NEEDEDPACKAGES@
++Libs: -L${libdir} -lvte
++Libs.private: @FT2_LIBS@ @OTHERLIBS@
+ Cflags: -I${includedir} @FT2_CFLAGS@ @OTHERCFLAGS@
