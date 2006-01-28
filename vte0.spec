@@ -105,7 +105,7 @@ Biblioteka VTE dla pythona.
 %{__autoheader}
 %{__automake}
 %{__autoconf}
-CFLAGS="-I/usr/include/ncurses"
+CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
 	--with-xft2 \
 	--with-pangox \
