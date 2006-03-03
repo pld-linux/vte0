@@ -24,8 +24,8 @@ BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
-BuildRequires:	python
 BuildRequires:	python-pygtk-devel >= 1.99.13
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(pre):	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
