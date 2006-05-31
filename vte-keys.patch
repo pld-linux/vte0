@@ -1,6 +1,7 @@
---- vte-0.10.25/src/keymap.c.orig	Fri Feb 21 05:02:58 2003
-+++ vte-0.10.25/src/keymap.c	Mon Mar  3 02:33:09 2003
-@@ -184,16 +184,14 @@
+diff -aurN vte-0.11.18.orig/src/keymap.c vte-0.11.18/src/keymap.c
+--- vte-0.11.18.orig/src/keymap.c	2006-02-02 04:43:16.000000000 +0100
++++ vte-0.11.18/src/keymap.c	2006-02-11 22:00:15.197487912 +0100
+@@ -202,16 +202,14 @@
   * system to system, or mine's just broken.  But anyway. */
  static struct _vte_keymap_entry _vte_keymap_GDK_Home[] = {
  	{cursor_all, keypad_all, fkey_all, 0, NULL, 0, "kh"},
@@ -19,7 +20,7 @@
  	{cursor_all, keypad_all, fkey_all, 0, NULL, 0, NULL},
  };
  
-@@ -968,6 +966,13 @@
+@@ -998,6 +996,13 @@
  	*special = NULL;
  	*normal_length = 0;
  
@@ -33,16 +34,16 @@
  	/* Search for the list for this key. */
  	entries = NULL;
  	for (i = 0; i < G_N_ELEMENTS(_vte_keymap); i++) {
-@@ -1223,7 +1228,7 @@
+@@ -1253,7 +1258,7 @@
  _vte_keymap_key_gets_modifiers(guint keyval)
  {
  	gboolean fkey = FALSE;
--	/* Determine if this is just a modifier key. */
+-	/* Determine if this key gets modifiers. */
 +	/* Determine if the key can take modifiers. */
  	switch (keyval) {
  	case GDK_Up:
  	case GDK_Down:
-@@ -1231,6 +1236,8 @@
+@@ -1261,6 +1266,8 @@
  	case GDK_Right:
  	case GDK_Insert:
  	case GDK_Delete:
