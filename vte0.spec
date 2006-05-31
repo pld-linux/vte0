@@ -1,33 +1,32 @@
 #
 # Conditional build:
-%bcond_with	glx # build for glX support
+%bcond_with	glx # build for GLX support
 #
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.11.11
-Release:	8
+Version:	0.12.2
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.11/%{name}-%{version}.tar.bz2
-# Source0-md5:	4d7a3674df5b8be7f1adffa981c1fc3d
+Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.12/%{name}-%{version}.tar.bz2
+# Source0-md5:	7cb1bd6ca528bc4db5ec685549fd3eb1
 Patch0:		%{name}-keys.patch
-Patch1:		%{name}-localenames.patch
-Patch2:		%{name}-atktextselection.patch
-Patch3:		%{name}-types-include.patch
-Patch4:		%{name}-performance.patch
-Patch5:		%{name}-nozvt.patch
+Patch1:		%{name}-nozvt.patch
 %{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 2.2.0
-BuildRequires:	gtk+2-devel >= 2.2.0
+BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel >= 2.10.3
+BuildRequires:	gtk+2-devel >= 2:2.8.18
 BuildRequires:	gtk-doc
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libtool
+BuildRequires:	ncurses-devel
+BuildRequires:	pkgconfig
+BuildRequires:	python-pygtk-devel >= 2.8.6
 BuildRequires:	rpm-pythonprov
-BuildRequires:	python-pygtk-devel >= 1.99.13
-BuildRequires:	xft-devel >= 2.1.2
+BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(pre):	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,10 +43,11 @@ Summary:	Headers for VTE
 Summary(pl):	Pliki nag³ówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 2.2.0
-Requires:	gtk+2-devel >= 2.2.0
-Requires:	libart_lgpl-devel >= 2.3.10
 Requires:	OpenGL-devel
+Requires:	glib2-devel >= 2.10.3
+Requires:	gtk+2-devel >= 2.8.18
+Requires:	libart_lgpl-devel >= 2.3.10
+Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
 %description devel
@@ -80,6 +80,7 @@ Statyczna wersja bibliotek VTE.
 Summary:	Python VTE module
 Summary(pl):	Modu³ VTE dla pythona
 Group:		Libraries
+%pyrequires_eq	python-libs
 Requires:	%{name} = %{version}-%{release}
 Requires:	python-pygtk-gtk >= 1.99.13
 
@@ -93,21 +94,15 @@ Biblioteka VTE dla pythona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p0
-%patch4 -p0
-%patch5 -p1
-
-mv -f po/{no,nb}.po
 
 %build
-glib-gettextize --copy --force
+%{__glib_gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
 %{__automake}
 %{__autoconf}
-CFLAGS="-I/usr/include/ncurses"
+CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
 	--with-xft2 \
 	--with-pangox \
@@ -124,6 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang vte
 
