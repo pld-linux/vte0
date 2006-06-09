@@ -1,26 +1,26 @@
-diff -aurN vte-0.11.18.orig/src/keymap.c vte-0.11.18/src/keymap.c
---- vte-0.11.18.orig/src/keymap.c	2006-02-02 04:43:16.000000000 +0100
-+++ vte-0.11.18/src/keymap.c	2006-02-11 22:00:15.197487912 +0100
-@@ -202,16 +202,14 @@
+diff -aurN vte-0.13.1.orig/src/keymap.c vte-0.13.1/src/keymap.c
+--- vte-0.13.1.orig/src/keymap.c	2006-04-19 00:36:42.000000000 +0200
++++ vte-0.13.1/src/keymap.c	2006-06-09 22:49:21.981672736 +0200
+@@ -203,16 +203,14 @@
   * system to system, or mine's just broken.  But anyway. */
- static struct _vte_keymap_entry _vte_keymap_GDK_Home[] = {
- 	{cursor_all, keypad_all, fkey_all, 0, NULL, 0, "kh"},
--	{cursor_all, keypad_all, fkey_vt220, 0, _VTE_CAP_CSI "1~", -1, NULL},
-+	{cursor_all, keypad_all, fkey_nothp, 0, _VTE_CAP_SS3 "H", -1, NULL},
- 	{cursor_all, keypad_all, fkey_hp, 0, _VTE_CAP_ESC "h", -1, NULL},
--	{cursor_all, keypad_all, fkey_nothpvt, 0, NULL, 0, "kh"},
- 	{cursor_all, keypad_all, fkey_all, 0, NULL, 0, NULL},
+ static const struct _vte_keymap_entry _vte_keymap_GDK_Home[] = {
+ 	{cursor_all, keypad_all, fkey_all, 0, X_NULL, 0, "kh"},
+-	{cursor_all, keypad_all, fkey_vt220, 0, _VTE_CAP_CSI "1~", -1, X_NULL},
++	{cursor_all, keypad_all, fkey_vt220, 0, _VTE_CAP_SS3 "H", -1, X_NULL},
+ 	{cursor_all, keypad_all, fkey_hp, 0, _VTE_CAP_ESC "h", -1, X_NULL},
+-	{cursor_all, keypad_all, fkey_nothpvt, 0, X_NULL, 0, "kh"},
+ 	{cursor_all, keypad_all, fkey_all, 0, X_NULL, 0, X_NULL},
  };
  
- static struct _vte_keymap_entry _vte_keymap_GDK_End[] = {
- 	{cursor_all, keypad_all, fkey_all, 0, NULL, 0, "@7"},
--	{cursor_all, keypad_all, fkey_vt220, 0, _VTE_CAP_CSI "4~", -1, NULL},
--	{cursor_all, keypad_all, fkey_notvt220, 0, NULL, 0, "@7"},
-+	{cursor_all, keypad_all, fkey_all, 0, _VTE_CAP_SS3 "F", -1, NULL},
- 	{cursor_all, keypad_all, fkey_all, 0, NULL, 0, NULL},
+ static const struct _vte_keymap_entry _vte_keymap_GDK_End[] = {
+ 	{cursor_all, keypad_all, fkey_all, 0, X_NULL, 0, "@7"},
+-	{cursor_all, keypad_all, fkey_vt220, 0, _VTE_CAP_CSI "4~", -1, X_NULL},
+-	{cursor_all, keypad_all, fkey_notvt220, 0, X_NULL, 0, "@7"},
++	{cursor_all, keypad_all, fkey_all, 0, _VTE_CAP_SS3 "F", -1, X_NULL},
+ 	{cursor_all, keypad_all, fkey_all, 0, X_NULL, 0, X_NULL},
  };
  
-@@ -998,6 +996,13 @@
+@@ -999,6 +997,13 @@
  	*special = NULL;
  	*normal_length = 0;
  
@@ -34,7 +34,7 @@ diff -aurN vte-0.11.18.orig/src/keymap.c vte-0.11.18/src/keymap.c
  	/* Search for the list for this key. */
  	entries = NULL;
  	for (i = 0; i < G_N_ELEMENTS(_vte_keymap); i++) {
-@@ -1253,7 +1258,7 @@
+@@ -1251,7 +1256,7 @@
  _vte_keymap_key_gets_modifiers(guint keyval)
  {
  	gboolean fkey = FALSE;
@@ -43,7 +43,7 @@ diff -aurN vte-0.11.18.orig/src/keymap.c vte-0.11.18/src/keymap.c
  	switch (keyval) {
  	case GDK_Up:
  	case GDK_Down:
-@@ -1261,6 +1266,8 @@
+@@ -1259,6 +1264,8 @@
  	case GDK_Right:
  	case GDK_Insert:
  	case GDK_Delete:
