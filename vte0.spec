@@ -5,19 +5,19 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.13.3
+Version:	0.13.4
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	f61fce149c8f3b4db1bd5cbcec8d664b
+# Source0-md5:	6b963ce0b5999d83b382089ef94d2874
 Patch0:		%{name}-keys.patch
 %{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.0
-BuildRequires:	gtk+2-devel >= 2:2.10.0
+BuildRequires:	glib2-devel >= 1:2.12.1
+BuildRequires:	gtk+2-devel >= 2:2.10.1
 BuildRequires:	gtk-doc
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libtool
@@ -28,6 +28,8 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(pre):	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		no_build_with_as_needed	1
 
 %description
 The vte package contains a terminal widget for GTK+. It's used by
@@ -43,8 +45,8 @@ Summary(pl):	Pliki nag³ówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-devel
-Requires:	glib2-devel >= 1:2.12.0
-Requires:	gtk+2-devel >= 2:2.10.0
+Requires:	glib2-devel >= 1:2.12.1
+Requires:	gtk+2-devel >= 2:2.10.1
 Requires:	libart_lgpl-devel >= 2.3.10
 Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
