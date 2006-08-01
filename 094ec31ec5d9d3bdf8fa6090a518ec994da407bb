@@ -1,0 +1,2 @@
+- 0.13.5, fixed --as-needed build (thx to sparky for s uggestion how to fix
+  it), re-enabled patch0 it seems to work now
