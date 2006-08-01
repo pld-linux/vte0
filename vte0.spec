@@ -5,12 +5,12 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.13.4
-Release:	2
+Version:	0.13.5
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	6b963ce0b5999d83b382089ef94d2874
+# Source0-md5:	47ea2c90bd64a7e8749cf7640dc82a28
 Patch0:		%{name}-keys.patch
 %{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
@@ -28,8 +28,6 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(pre):	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		no_build_with_as_needed	1
 
 %description
 The vte package contains a terminal widget for GTK+. It's used by
@@ -93,8 +91,7 @@ Biblioteka VTE dla pythona.
 
 %prep
 %setup -q
-# disabled: breaks other apps
-#%patch0 -p1
+%patch0 -p1
 
 %build
 %{__intltoolize}
@@ -103,14 +100,23 @@ Biblioteka VTE dla pythona.
 %{__autoheader}
 %{__automake}
 %{__autoconf}
-CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
+cd gnome-pty-helper
+%{__libtoolize}
+%{__aclocal}
+%{__autoheader}
+%{__automake}
+%{__autoconf}
+cd ..
+#CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
+	LIBS='-ltinfo' \
 	--with-xft2 \
 	--with-pangox \
 	%{?with_glx:--with-glX} \
 	--with-default-emulation=xterm \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
+	
 %{__make}
 
 %install
