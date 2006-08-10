@@ -6,7 +6,7 @@ Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
 Version:	0.13.5
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.13/%{name}-%{version}.tar.bz2
@@ -89,6 +89,18 @@ Python VTE library.
 %description -n python-vte -l pl
 Biblioteka VTE dla pythona.
 
+%package apidocs
+Summary:	VTE API documentation
+Summary(pl):	Dokumentacja API VTE
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+VTE API documentation.
+
+%description apidocs -l pl
+Dokumentacja API VTE.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -107,7 +119,6 @@ cd gnome-pty-helper
 %{__automake}
 %{__autoconf}
 cd ..
-#CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
 	LIBS='-ltinfo' \
 	--with-xft2 \
@@ -152,11 +163,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 %{_includedir}/*
 %{_pkgconfigdir}/*
-%{_gtkdocdir}/*
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/*
 
 %files -n python-vte
 %defattr(644,root,root,755)
