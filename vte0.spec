@@ -5,14 +5,13 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.12.2
+Version:	0.13.6
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.12/%{name}-%{version}.tar.bz2
-# Source0-md5:	7cb1bd6ca528bc4db5ec685549fd3eb1
+Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.13/%{name}-%{version}.tar.bz2
+# Source0-md5:	6f1e5939c7010fc709453947e4d35227
 Patch0:		%{name}-keys.patch
-Patch1:		%{name}-nozvt.patch
 %{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -90,26 +89,45 @@ Python VTE library.
 %description -n python-vte -l pl
 Biblioteka VTE dla pythona.
 
+%package apidocs
+Summary:	VTE API documentation
+Summary(pl):	Dokumentacja API VTE
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+VTE API documentation.
+
+%description apidocs -l pl
+Dokumentacja API VTE.
+
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
-%{__glib_gettextize}
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
 %{__automake}
 %{__autoconf}
-CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
+cd gnome-pty-helper
+%{__libtoolize}
+%{__aclocal}
+%{__autoheader}
+%{__automake}
+%{__autoconf}
+cd ..
 %configure \
+	LIBS='-ltinfo' \
 	--with-xft2 \
 	--with-pangox \
 	%{?with_glx:--with-glX} \
 	--with-default-emulation=xterm \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
+	
 %{__make}
 
 %install
@@ -119,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/ug
 
 %find_lang vte
 
@@ -145,11 +163,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 %{_includedir}/*
 %{_pkgconfigdir}/*
-%{_gtkdocdir}/*
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/*
 
 %files -n python-vte
 %defattr(644,root,root,755)
