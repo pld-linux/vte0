@@ -5,25 +5,25 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.13.1
+Version:	0.13.6
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	5050661ce79f5741adf8726379266fd5
+# Source0-md5:	6f1e5939c7010fc709453947e4d35227
 Patch0:		%{name}-keys.patch
 %{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.11.2
-BuildRequires:	gtk+2-devel >= 2:2.9.2
+BuildRequires:	glib2-devel >= 2.10.3
+BuildRequires:	gtk+2-devel >= 2:2.8.18
 BuildRequires:	gtk-doc
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
-BuildRequires:	python-pygtk-devel >= 2.9.0
+BuildRequires:	python-pygtk-devel >= 2.8.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(pre):	utempter
@@ -43,8 +43,8 @@ Summary(pl):	Pliki nag³ówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-devel
-Requires:	glib2-devel >= 2.11.2
-Requires:	gtk+2-devel >= 2.9.2
+Requires:	glib2-devel >= 2.10.3
+Requires:	gtk+2-devel >= 2.8.18
 Requires:	libart_lgpl-devel >= 2.3.10
 Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
@@ -89,6 +89,18 @@ Python VTE library.
 %description -n python-vte -l pl
 Biblioteka VTE dla pythona.
 
+%package apidocs
+Summary:	VTE API documentation
+Summary(pl):	Dokumentacja API VTE
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+VTE API documentation.
+
+%description apidocs -l pl
+Dokumentacja API VTE.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -100,14 +112,22 @@ Biblioteka VTE dla pythona.
 %{__autoheader}
 %{__automake}
 %{__autoconf}
-CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
+cd gnome-pty-helper
+%{__libtoolize}
+%{__aclocal}
+%{__autoheader}
+%{__automake}
+%{__autoconf}
+cd ..
 %configure \
+	LIBS='-ltinfo' \
 	--with-xft2 \
 	--with-pangox \
 	%{?with_glx:--with-glX} \
 	--with-default-emulation=xterm \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
+	
 %{__make}
 
 %install
@@ -143,11 +163,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 %{_includedir}/*
 %{_pkgconfigdir}/*
-%{_gtkdocdir}/*
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/*
 
 %files -n python-vte
 %defattr(644,root,root,755)
