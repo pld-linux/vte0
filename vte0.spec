@@ -5,24 +5,24 @@
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
-Version:	0.13.7
-Release:	2
+Version:	0.14.0
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	6008a8643e313f212671274ac6662d3b
+Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.14/%{name}-%{version}.tar.bz2
+# Source0-md5:	42c6929f2072f1373cf37942896bb332
 Patch0:		%{name}-keys.patch
 %{?with_glx:BuildRequires:	OpenGL-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2:2.10.2
+BuildRequires:	gtk+2-devel >= 2:2.10.3
 BuildRequires:	gtk-doc
-BuildRequires:	libart_lgpl-devel >= 2.3.10
+BuildRequires:	libart_lgpl-devel >= 2.3.17
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
-BuildRequires:	python-pygtk-devel >= 2:2.9.3
+BuildRequires:	python-pygtk-devel >= 2:2.10.1
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(pre):	utempter
@@ -42,8 +42,8 @@ Summary(pl):	Pliki nag³ówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_glx:Requires:	OpenGL-devel}
-Requires:	gtk+2-devel >= 2:2.10.2
-Requires:	libart_lgpl-devel >= 2.3.10
+Requires:	gtk+2-devel >= 2:2.10.3
+Requires:	libart_lgpl-devel >= 2.3.17
 Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
@@ -79,7 +79,7 @@ Summary(pl):	Modu³ VTE dla pythona
 Group:		Libraries
 %pyrequires_eq	python-libs
 Requires:	%{name} = %{version}-%{release}
-Requires:	python-pygtk-gtk >= 2:2.9.6
+Requires:	python-pygtk-gtk >= 2:2.10.1
 
 %description -n python-vte
 Python VTE library.
