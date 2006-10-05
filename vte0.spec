@@ -135,7 +135,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/ug
 
 %find_lang vte
 
