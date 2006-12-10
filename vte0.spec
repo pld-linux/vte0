@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	glx # build for GLX support
+%bcond_with	glx	# drawing using GLX
 #
 Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
@@ -12,12 +12,15 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.14/%{name}-%{version}.tar.bz2
 # Source0-md5:	98ea2513b773b44cb7f8d75dc1aa312e
 Patch0:		%{name}-keys.patch
-%{?with_glx:BuildRequires:	OpenGL-devel}
-BuildRequires:	autoconf
-BuildRequires:	automake
+Patch1:		%{name}-link.patch
+%{?with_glx:BuildRequires:	OpenGL-GLU-devel}
+%{?with_glx:BuildRequires:	OpenGL-GLX-devel}
+BuildRequires:	autoconf >= 2.59-9
+BuildRequires:	automake >= 1.6
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.10.5
 BuildRequires:	gtk-doc
+BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libart_lgpl-devel >= 2.3.17
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
@@ -41,7 +44,7 @@ Summary:	Headers for VTE
 Summary(pl):	Pliki nag³ówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%{?with_glx:Requires:	OpenGL-devel}
+%{?with_glx:Requires:	OpenGL-GLU-devel}
 Requires:	gtk+2-devel >= 2:2.10.5
 Requires:	libart_lgpl-devel >= 2.3.17
 Requires:	ncurses-devel
@@ -102,6 +105,7 @@ Dokumentacja API VTE.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__intltoolize}
@@ -118,13 +122,12 @@ cd gnome-pty-helper
 %{__autoconf}
 cd ..
 %configure \
-	LIBS='-ltinfo' \
-	--with-xft2 \
-	--with-pangox \
-	%{?with_glx:--with-glX} \
-	--with-default-emulation=xterm \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+	--with-default-emulation=xterm \
+	%{?with_glx:--with-glX} \
+	--with-html-dir=%{_gtkdocdir} \
+	--with-pangox \
+	--with-xft2
 	
 %{__make}
 
@@ -146,9 +149,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f vte.lang
 %defattr(644,root,root,755)
-%doc NEWS README AUTHORS
+%doc AUTHORS ChangeLog MAINTAINERS NEWS README
 %attr(755,root,root) %{_bindir}/vte
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libvte.so.*.*.*
 %dir %{_libdir}/vte
 %attr(755,root,root) %{_libdir}/vte/*
 %attr(2755,root,utmp) %{_libdir}/gnome-pty-helper
@@ -156,19 +159,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/*
-%{_pkgconfigdir}/*
+%attr(755,root,root) %{_libdir}/libvte.so
+%{_libdir}/libvte.la
+%{_includedir}/vte
+%{_pkgconfigdir}/vte.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libvte.a
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/*
+%{_gtkdocdir}/vte
 
 %files -n python-vte
 %defattr(644,root,root,755)
-%attr(755,root,root) %{py_sitedir}/gtk-2.0/*.so
+%attr(755,root,root) %{py_sitedir}/gtk-2.0/vtemodule.so
