@@ -6,7 +6,7 @@ Summary:	VTE terminal widget library
 Summary(pl):	Biblioteka z kontrolk± terminala VTE
 Name:		vte
 Version:	0.14.1
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.14/%{name}-%{version}.tar.bz2
@@ -54,14 +54,12 @@ Conflicts:	gnome-libs-devel < 1.4.1.2
 The vte package contains a terminal widget for GTK+. It's used by
 gnome-terminal among other programs.
 
-You should install the vte-devel package if you would like to
-compile applications that use the vte terminal widget. You do not need
-to install vte-devel if you just want to use precompiled
-applications.
+You should install the vte-devel package if you would like to compile
+applications that use the vte terminal widget. You do not need to
+install vte-devel if you just want to use precompiled applications.
 
 %description devel -l pl
-Pliki nag³ówkowe potrzebne do kompilowania programów u¿ywaj±cych
-vte.
+Pliki nag³ówkowe potrzebne do kompilowania programów u¿ywaj±cych vte.
 
 %package static
 Summary:	Static VTE library
@@ -128,7 +126,7 @@ cd ..
 	--with-html-dir=%{_gtkdocdir} \
 	--with-pangox \
 	--with-xft2
-	
+
 %{__make}
 
 %install
