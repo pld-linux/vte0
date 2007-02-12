@@ -3,7 +3,7 @@
 %bcond_with	glx	# drawing using GLX
 #
 Summary:	VTE terminal widget library
-Summary(pl):	Biblioteka z kontrolk± terminala VTE
+Summary(pl.UTF-8):   Biblioteka z kontrolkÄ… terminala VTE
 Name:		vte
 Version:	0.14.2
 Release:	1
@@ -35,13 +35,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 The vte package contains a terminal widget for GTK+. It's used by
 gnome-terminal among other programs.
 
-%description -l pl
-Ten pakiet zawiera kontrolkê terminala dla GTK+. Jest u¿ywany przez
+%description -l pl.UTF-8
+Ten pakiet zawiera kontrolkÄ™ terminala dla GTK+. Jest uÅ¼ywany przez
 gnome-terminal oraz inne programy.
 
 %package devel
 Summary:	Headers for VTE
-Summary(pl):	Pliki nag³ówkowe VTE
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_glx:Requires:	OpenGL-GLU-devel}
@@ -58,12 +58,12 @@ You should install the vte-devel package if you would like to compile
 applications that use the vte terminal widget. You do not need to
 install vte-devel if you just want to use precompiled applications.
 
-%description devel -l pl
-Pliki nag³ówkowe potrzebne do kompilowania programów u¿ywaj±cych vte.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe potrzebne do kompilowania programÃ³w uÅ¼ywajÄ…cych vte.
 
 %package static
 Summary:	Static VTE library
-Summary(pl):	Statyczna biblioteka VTE
+Summary(pl.UTF-8):   Statyczna biblioteka VTE
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Conflicts:	gnome-libs-static < 1.4.1.2
@@ -71,12 +71,12 @@ Conflicts:	gnome-libs-static < 1.4.1.2
 %description static
 Static version of VTE libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja bibliotek VTE.
 
 %package -n python-vte
 Summary:	Python VTE module
-Summary(pl):	Modu³ VTE dla pythona
+Summary(pl.UTF-8):   ModuÅ‚ VTE dla pythona
 Group:		Libraries
 %pyrequires_eq	python-libs
 Requires:	%{name} = %{version}-%{release}
@@ -85,19 +85,19 @@ Requires:	python-pygtk-gtk >= 2:2.10.2
 %description -n python-vte
 Python VTE library.
 
-%description -n python-vte -l pl
+%description -n python-vte -l pl.UTF-8
 Biblioteka VTE dla pythona.
 
 %package apidocs
 Summary:	VTE API documentation
-Summary(pl):	Dokumentacja API VTE
+Summary(pl.UTF-8):   Dokumentacja API VTE
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
 VTE API documentation.
 
-%description apidocs -l pl
+%description apidocs -l pl.UTF-8
 Dokumentacja API VTE.
 
 %prep
