@@ -3,7 +3,7 @@
 %bcond_with	glx	# drawing using GLX
 #
 Summary:	VTE terminal widget library
-Summary(pl.UTF-8):   Biblioteka z kontrolką terminala VTE
+Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
 Version:	0.14.2
 Release:	1
@@ -41,7 +41,7 @@ gnome-terminal oraz inne programy.
 
 %package devel
 Summary:	Headers for VTE
-Summary(pl.UTF-8):   Pliki nagłówkowe VTE
+Summary(pl.UTF-8):	Pliki nagłówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_glx:Requires:	OpenGL-GLU-devel}
@@ -63,7 +63,7 @@ Pliki nagłówkowe potrzebne do kompilowania programów używających vte.
 
 %package static
 Summary:	Static VTE library
-Summary(pl.UTF-8):   Statyczna biblioteka VTE
+Summary(pl.UTF-8):	Statyczna biblioteka VTE
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Conflicts:	gnome-libs-static < 1.4.1.2
@@ -76,7 +76,7 @@ Statyczna wersja bibliotek VTE.
 
 %package -n python-vte
 Summary:	Python VTE module
-Summary(pl.UTF-8):   Moduł VTE dla pythona
+Summary(pl.UTF-8):	Moduł VTE dla pythona
 Group:		Libraries
 %pyrequires_eq	python-libs
 Requires:	%{name} = %{version}-%{release}
@@ -90,7 +90,7 @@ Biblioteka VTE dla pythona.
 
 %package apidocs
 Summary:	VTE API documentation
-Summary(pl.UTF-8):   Dokumentacja API VTE
+Summary(pl.UTF-8):	Dokumentacja API VTE
 Group:		Documentation
 Requires:	gtk-doc-common
 
