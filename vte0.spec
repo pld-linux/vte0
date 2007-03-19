@@ -1,9 +1,4 @@
 #
-# TODO:
-# - watch https://bugs.launchpad.net/ubuntu/+source/vte/+bug/91985
-#   for news regarding the lack of transparency. The patches there
-#   apply, but don't work
-#
 # Conditional build:
 %bcond_with	glx	# drawing using GLX
 #
@@ -11,7 +6,7 @@ Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
 Version:	0.16.0
-Release:	1.5
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.16/%{name}-%{version}.tar.bz2
