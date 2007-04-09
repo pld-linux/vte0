@@ -5,21 +5,20 @@
 Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
-Version:	0.16.0
-Release:	2
+Version:	0.16.1
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	6b85967ba75ed574d0e5782697fbc79f
+# Source0-md5:	ceec938666899c1e67e1ce4dd358c753
 Patch0:		%{name}-keys.patch
 Patch1:		%{name}-link.patch
-Patch2:		%{name}-branch.diff
 %{?with_glx:BuildRequires:	OpenGL-GLU-devel}
 %{?with_glx:BuildRequires:	OpenGL-GLX-devel}
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.6
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2:2.10.9
+BuildRequires:	gtk+2-devel >= 2:2.10.10
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	gtk-doc-automake
 BuildRequires:	intltool >= 0.35.5
@@ -46,7 +45,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_glx:Requires:	OpenGL-GLU-devel}
-Requires:	gtk+2-devel >= 2:2.10.9
+Requires:	gtk+2-devel >= 2:2.10.10
 Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
@@ -104,7 +103,6 @@ Dokumentacja API VTE.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__glib_gettextize}
