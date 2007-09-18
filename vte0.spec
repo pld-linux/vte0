@@ -5,12 +5,12 @@
 Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
-Version:	0.16.8
+Version:	0.16.9
 Release:	1
-License:	LGPL
+License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/vte/0.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	65344de3023c41c8dda2b35a415bf969
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.16/%{name}-%{version}.tar.bz2
+# Source0-md5:	a42c893a01e3d9818789be373e529422
 Patch0:		%{name}-keys.patch
 Patch1:		%{name}-link.patch
 %{?with_glx:BuildRequires:	OpenGL-GLU-devel}
@@ -18,14 +18,14 @@ Patch1:		%{name}-link.patch
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.6
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2:2.10.10
+BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	gtk-doc-automake
-BuildRequires:	intltool >= 0.35.5
+BuildRequires:	intltool >= 0.36.2
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
-BuildRequires:	python-pygtk-devel >= 2:2.10.4
+BuildRequires:	python-pygtk-devel >= 2:2.12.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(pre):	utempter
@@ -45,7 +45,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_glx:Requires:	OpenGL-GLU-devel}
-Requires:	gtk+2-devel >= 2:2.10.10
+Requires:	gtk+2-devel >= 2:2.12.0
 Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
@@ -79,7 +79,7 @@ Summary(pl.UTF-8):	Moduł VTE dla pythona
 Group:		Libraries
 %pyrequires_eq	python-libs
 Requires:	%{name} = %{version}-%{release}
-Requires:	python-pygtk-gtk >= 2:2.10.4
+Requires:	python-pygtk-gtk >= 2:2.12.0
 
 %description -n python-vte
 Python VTE library.
