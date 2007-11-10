@@ -6,7 +6,7 @@ Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
 Version:	0.16.9
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.16/%{name}-%{version}.tar.bz2
@@ -29,6 +29,8 @@ BuildRequires:	python-pygtk-devel >= 2:2.12.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(pre):	utempter
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -137,7 +139,10 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
 
-%find_lang vte
+[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
+        mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
