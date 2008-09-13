@@ -5,13 +5,13 @@
 Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
-Version:	0.17.2
+Version:	0.17.3
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.17/%{name}-%{version}.tar.bz2
-# Source0-md5:	515cd053e2c25423793ea4e057e3b018
-Patch0:		%{name}-keys.patch
+# Source0-md5:	a0a84d0472854ebb428882f12a142efd
+# http://bugzilla.gnome.org/show_bug.cgi?id=552096
 Patch1:		%{name}-link.patch
 %{?with_glx:BuildRequires:	OpenGL-GLU-devel}
 %{?with_glx:BuildRequires:	OpenGL-GLX-devel}
@@ -103,7 +103,6 @@ Dokumentacja API VTE.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
 
 %build
