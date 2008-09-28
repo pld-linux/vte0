@@ -5,23 +5,23 @@
 Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
-Version:	0.16.14
+Version:	0.17.4
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	9df3e35b81b209952ac1cf7904f7b620
-Patch0:		%{name}-keys.patch
-Patch1:		%{name}-link.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.17/%{name}-%{version}.tar.bz2
+# Source0-md5:	ec6cb2668db7146eae7cfc48af98f3ed
+# http://bugzilla.gnome.org/show_bug.cgi?id=552096
+Patch0:		%{name}-link.patch
 %{?with_glx:BuildRequires:	OpenGL-GLU-devel}
 %{?with_glx:BuildRequires:	OpenGL-GLX-devel}
 BuildRequires:	autoconf >= 2.59-9
-BuildRequires:	automake >= 1:1.6
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2:2.12.0
+BuildRequires:	gtk+2-devel >= 2:2.14.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	gtk-doc-automake
-BuildRequires:	intltool >= 0.36.2
+BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
@@ -47,7 +47,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_glx:Requires:	OpenGL-GLU-devel}
-Requires:	gtk+2-devel >= 2:2.12.0
+Requires:	gtk+2-devel >= 2:2.14.0
 Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
@@ -104,7 +104,6 @@ Dokumentacja API VTE.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__glib_gettextize}
@@ -138,9 +137,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
-
-[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
-        mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 
 %find_lang %{name}
 
