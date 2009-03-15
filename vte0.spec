@@ -1,23 +1,16 @@
-#
-# Conditional build:
-%bcond_with	glx	# drawing using GLX
-#
 Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
-Version:	0.17.4
-Release:	4
+Version:	0.20.0
+Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.17/%{name}-%{version}.tar.bz2
-# Source0-md5:	ec6cb2668db7146eae7cfc48af98f3ed
-# http://bugzilla.gnome.org/show_bug.cgi?id=552096
-Patch0:		%{name}-link.patch
-%{?with_glx:BuildRequires:	OpenGL-GLU-devel}
-%{?with_glx:BuildRequires:	OpenGL-GLX-devel}
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.20/%{name}-%{version}.tar.bz2
+# Source0-md5:	12dde859bc98e039336baff6e9e6b15b
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
+BuildRequires:	gnome-common
 BuildRequires:	gtk+2-devel >= 2:2.14.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	gtk-doc-automake
@@ -46,7 +39,6 @@ Summary:	Headers for VTE
 Summary(pl.UTF-8):	Pliki nagłówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%{?with_glx:Requires:	OpenGL-GLU-devel}
 Requires:	gtk+2-devel >= 2:2.14.0
 Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
@@ -78,7 +70,7 @@ Statyczna wersja bibliotek VTE.
 %package -n python-vte
 Summary:	Python VTE module
 Summary(pl.UTF-8):	Moduł VTE dla pythona
-Group:		Libraries
+Group:		Libraries/Python
 %pyrequires_eq	python-libs
 Requires:	%{name} = %{version}-%{release}
 Requires:	python-pygtk-gtk >= 2:2.12.0
@@ -88,6 +80,19 @@ Python VTE library.
 
 %description -n python-vte -l pl.UTF-8
 Biblioteka VTE dla pythona.
+
+%package -n python-vte-devel
+Summary:	Development files for VTE Python bindings
+Summary(pl.UTF-8):	Pliki programistyczne wiązań Pythona do VTE
+Group:		Development/Languages/Python
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	python-vte = %{version}-%{release}
+
+%description -n python-vte-devel
+Development files for VTE Python bindings.
+
+%description -n python-vte-devel -l pl.UTF-8
+Pliki programistyczne wiązań Pythona do VTE.
 
 %package apidocs
 Summary:	VTE API documentation
@@ -103,9 +108,9 @@ Dokumentacja API VTE.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
+%{__gtkdocize}
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
@@ -123,11 +128,7 @@ cd ..
 %configure \
 	--enable-gtk-doc \
 	--with-default-emulation=xterm \
-	%{?with_glx:--with-glX} \
-	--with-html-dir=%{_gtkdocdir} \
-	--with-pangox \
-	--with-xft2
-
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
@@ -175,3 +176,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python-vte
 %defattr(644,root,root,755)
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/vtemodule.so
+
+%files -n python-vte-devel
+%defattr(644,root,root,755)
+%{_datadir}/pygtk/2.0/defs/*.defs
+%{_pkgconfigdir}/pyvte.pc
