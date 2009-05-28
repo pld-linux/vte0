@@ -1,0 +1,29 @@
+diff -urN vte-0.20.3/configure.in vte-0.20.3.new/configure.in
+--- vte-0.20.3/configure.in	2009-05-26 00:26:21.000000000 +0200
++++ vte-0.20.3.new/configure.in	2009-05-28 21:31:10.040019929 +0200
+@@ -265,6 +265,8 @@
+ VTE_DEFAULT_EMULATION=$emulation
+ AC_SUBST(VTE_DEFAULT_EMULATION)
+ 
++AM_CONDITIONAL(VTE_DEFAULT_EMULATION_IS_XTERM, [test "x$emulation" = xxterm])
++
+ # Check for headers.
+ AC_CHECK_HEADERS(sys/select.h sys/syslimits.h sys/termios.h sys/un.h sys/wait.h stropts.h termios.h wchar.h)
+ AC_HEADER_TIOCGWINSZ
+diff -urN vte-0.20.3/termcaps/Makefile.am vte-0.20.3.new/termcaps/Makefile.am
+--- vte-0.20.3/termcaps/Makefile.am	2009-04-18 00:05:54.000000000 +0200
++++ vte-0.20.3.new/termcaps/Makefile.am	2009-05-28 21:33:19.363340292 +0200
+@@ -1,8 +1,12 @@
+ EXTRA_DIST = xterm xterm.baseline
+ termcapdir = $(pkgdatadir)/termcap
+-termcap_DATA = xterm $(VTE_DEFAULT_EMULATION)
++termcap_DATA = xterm
++
++if !VTE_DEFAULT_EMULATION_IS_XTERM
++termcap_DATA += $(VTE_DEFAULT_EMULATION)
+ $(VTE_DEFAULT_EMULATION): xterm
+ 	sed -e s,^xterm:,$(VTE_DEFAULT_EMULATION):,g \
+ 	    -e s,^xterm\|,$(VTE_DEFAULT_EMULATION)\|,g $< > $@
++endif
+ 
+ -include $(top_srcdir)/git.mk
