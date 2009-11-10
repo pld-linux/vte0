@@ -2,7 +2,7 @@ Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
 Version:	0.22.4
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.22/%{name}-%{version}.tar.bz2
@@ -139,7 +139,7 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/ca@valencia
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en@shaw
 
 %find_lang %{name}
 
