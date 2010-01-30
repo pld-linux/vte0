@@ -9,6 +9,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.22/%{name}-%{version}.tar.
 # Source0-md5:	cbb17696e40ee175977bf165ef838da2
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common
 BuildRequires:	gtk+2-devel >= 2:2.14.0
