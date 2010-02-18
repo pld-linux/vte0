@@ -41,6 +41,7 @@ Summary:	Headers for VTE
 Summary(pl.UTF-8):	Pliki nagłówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.22.0
 Requires:	gtk+2-devel >= 2:2.14.0
 Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
