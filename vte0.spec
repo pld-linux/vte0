@@ -1,18 +1,19 @@
 Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
-Version:	0.24.3
-Release:	2
+Version:	0.26.0
+Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.24/%{name}-%{version}.tar.bz2
-# Source0-md5:	3eba555eab7ccbbe5ca056bb203a14ab
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.26/%{name}-%{version}.tar.bz2
+# Source0-md5:	44c57bb20a79d9e3b20c7bf222714528
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gnome-common
+BuildRequires:	gobject-introspection-devel >= 0.6.7
 BuildRequires:	gtk+2-devel >= 2:2.14.0
 BuildRequires:	gtk-doc >= 1.13
 BuildRequires:	gtk-doc-automake
@@ -145,7 +146,7 @@ rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en@shaw
 
-%find_lang %{name}
+%find_lang %{name}-0.0
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -153,14 +154,18 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f vte.lang
+%files -f vte-0.0.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog MAINTAINERS NEWS README
 %attr(755,root,root) %{_bindir}/vte
 %attr(755,root,root) %{_libdir}/libvte.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libvte.so.9
-%dir %{_libdir}/vte
-%attr(755,root,root) %{_libdir}/vte/*
+%dir %{_libdir}/vte-0.0
+%attr(755,root,root) %{_libdir}/vte-0.0/decset
+%attr(755,root,root) %{_libdir}/vte-0.0/interpret
+%attr(755,root,root) %{_libdir}/vte-0.0/osc
+%attr(755,root,root) %{_libdir}/vte-0.0/slowcat
+%attr(755,root,root) %{_libdir}/vte-0.0/window
 %attr(2755,root,utmp) %{_libdir}/gnome-pty-helper
 %{_datadir}/vte
 
@@ -168,7 +173,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libvte.so
 %{_libdir}/libvte.la
-%{_includedir}/vte
+%{_includedir}/vte-0.0
 %{_pkgconfigdir}/vte.pc
 
 %files static
@@ -177,7 +182,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/vte
+%{_gtkdocdir}/vte-0.0
 
 %files -n python-vte
 %defattr(644,root,root,755)
