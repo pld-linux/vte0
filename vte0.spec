@@ -1,20 +1,20 @@
 Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
-Version:	0.27.4
+Version:	0.27.5
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.27/%{name}-%{version}.tar.bz2
-# Source0-md5:	5e76a2197c482e07000973b7e3c19a95
+# Source0-md5:	45ff38a82f02c60cfb07a51acc8f12b5
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.22.0
+BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gnome-common
-BuildRequires:	gobject-introspection-devel >= 0.6.7
-BuildRequires:	gtk+3-devel
+BuildRequires:	gobject-introspection-devel >= 0.9.0
+BuildRequires:	gtk+3-devel >= 2.91.6
 BuildRequires:	gtk-doc >= 1.13
 BuildRequires:	gtk-doc-automake
 BuildRequires:	intltool >= 0.40.0
@@ -42,8 +42,8 @@ Summary:	Headers for VTE
 Summary(pl.UTF-8):	Pliki nagłówkowe VTE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.22.0
-Requires:	gtk+3-devel
+Requires:	glib2-devel >= 1:2.26.0
+Requires:	gtk+3-devel >= 2.91.6
 Requires:	ncurses-devel
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
@@ -116,8 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/en@shaw
 
 %find_lang %{name}-2.90
 
