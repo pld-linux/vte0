@@ -142,9 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
-
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/en@shaw
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*.{la,a}
 
 %find_lang %{name}-0.0
 
