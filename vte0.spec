@@ -13,20 +13,23 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
-BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc >= 1.13
-BuildRequires:	gtk-doc-automake
+BuildRequires:	gtk-doc-automake >= 1.13
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2.2
 BuildRequires:	ncurses-devel
+BuildRequires:	pango-devel >= 1:1.22.0
 BuildRequires:	pkgconfig
 BuildRequires:	python-pygtk-devel >= 2:2.12.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.592
 Requires:	%{name}-common = %{version}-%{release}
+Requires:	glib2 >= 1:2.28.0
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
+Requires:	pango >= 1:1.22.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,6 +60,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.28.0
 Requires:	gtk+3-devel >= 3.0.0
 Requires:	ncurses-devel
+Requires:	pango-devel >= 1:1.22.0
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
 %description devel
@@ -96,6 +100,9 @@ Summary:	VTE terminal widget library for GTK+ 2
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE dla GTK+ 2
 Group:		X11/Libraries
 Requires:	%{name}-common = %{version}-%{release}
+Requires:	glib2 >= 1:2.28.0
+Requires:	gtk+2 >= 2:2.20.0
+Requires:	pango >= 1:1.22.0
 
 %description -n vte0
 The vte package contains a terminal widget for GTK+ 2.x. It's used by
@@ -111,8 +118,9 @@ Summary(pl.UTF-8):	Pliki nagłówkowe VTE dla GTK+ 2
 Group:		X11/Development/Libraries
 Requires:	vte0 = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.28.0
-Requires:	gtk+2-devel >= 2:2.14.0
+Requires:	gtk+2-devel >= 2:2.20.0
 Requires:	ncurses-devel
+Requires:	pango-devel >= 1:1.22.0
 Conflicts:	gnome-libs-devel < 1.4.1.2
 
 %description -n vte0-devel
