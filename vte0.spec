@@ -2,7 +2,8 @@ Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte
 Version:	0.26.2
-Release:	1
+Release:	2
+Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.26/%{name}-%{version}.tar.bz2
@@ -41,7 +42,7 @@ gnome-terminal oraz inne programy.
 Summary:	Headers for VTE
 Summary(pl.UTF-8):	Pliki nagłówkowe VTE
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	glib2-devel >= 1:2.22.0
 Requires:	gtk+2-devel >= 2:2.14.0
 Requires:	ncurses-devel
@@ -62,7 +63,7 @@ Pliki nagłówkowe potrzebne do kompilowania programów używających vte.
 Summary:	Static VTE library
 Summary(pl.UTF-8):	Statyczna biblioteka VTE
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Conflicts:	gnome-libs-static < 1.4.1.2
 
 %description static
@@ -76,7 +77,7 @@ Summary:	Python VTE module
 Summary(pl.UTF-8):	Moduł VTE dla pythona
 Group:		Libraries/Python
 %pyrequires_eq	python-libs
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	python-pygtk-gtk >= 2:2.12.0
 
 %description -n python-vte
@@ -89,7 +90,7 @@ Biblioteka VTE dla pythona.
 Summary:	Development files for VTE Python bindings
 Summary(pl.UTF-8):	Pliki programistyczne wiązań Pythona do VTE
 Group:		Development/Languages/Python
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Requires:	python-vte = %{version}-%{release}
 
 %description -n python-vte-devel
