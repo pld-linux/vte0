@@ -2,7 +2,7 @@ Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte0
 Version:	0.28.2
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.28/vte-%{version}.tar.bz2
@@ -90,6 +90,8 @@ Group:		Libraries/Python
 %pyrequires_eq	python-libs
 Requires:	%{name} = %{version}-%{release}
 Requires:	python-pygtk-gtk >= 2:2.12.0
+Provides:	python-vte
+Obsoletes:	python-vte
 
 %description -n python-vte0
 Python VTE library.
@@ -103,6 +105,8 @@ Summary(pl.UTF-8):	Pliki programistyczne wiązań Pythona do VTE
 Group:		Development/Languages/Python
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	python-vte0 = %{version}-%{release}
+Provides:	python-vte-devel
+Obsoletes:	python-vte-devel
 
 %description -n python-vte0-devel
 Development files for VTE Python bindings.
@@ -148,6 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/vte
 %attr(755,root,root) %{_libdir}/libvte.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libvte.so.9
+%dir %{_libdir}/vte-0.0
 %attr(2755,root,utmp) %{_libdir}/vte-0.0/gnome-pty-helper
 %{_libdir}/girepository-1.0/Vte-0.0.typelib
 %{_datadir}/vte
