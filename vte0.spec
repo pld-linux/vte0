@@ -1,5 +1,5 @@
-Summary:	VTE terminal widget library
-Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
+Summary:	VTE terminal widget library for GTK+ 2
+Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE for GTK+ 2
 Name:		vte0
 Version:	0.28.2
 Release:	3
