@@ -2,7 +2,7 @@ Summary:	VTE terminal widget library for GTK+ 2
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE for GTK+ 2
 Name:		vte0
 Version:	0.28.2
-Release:	5
+Release:	6
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.28/vte-%{version}.tar.bz2
