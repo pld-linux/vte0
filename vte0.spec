@@ -2,7 +2,7 @@ Summary:	VTE terminal widget library for GTK+ 2
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE for GTK+ 2
 Name:		vte0
 Version:	0.28.2
-Release:	13
+Release:	14
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.28/vte-%{version}.tar.bz2
@@ -27,10 +27,10 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.592
 Requires(pre):	utempter
 Requires:	glib2 >= 1:2.28.0
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	pango >= 1:1.22.0
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -77,6 +77,9 @@ Summary:	VTE API documentation - GTK+ 2.x version
 Summary(pl.UTF-8):	Dokumentacja API VTE - wersja dla GTK+ 2.x
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 VTE API documentation - GTK+ 2.x version.
@@ -88,8 +91,8 @@ Dokumentacja API VTE - wersja dla GTK+ 2.x.
 Summary:	Python VTE module
 Summary(pl.UTF-8):	Moduł VTE dla pythona
 Group:		Libraries/Python
-%pyrequires_eq	python-libs
 Requires:	%{name} = %{version}-%{release}
+Requires:	python-libs
 Requires:	python-pygtk-gtk >= 2:2.12.0
 Provides:	python-vte
 Obsoletes:	python-vte
