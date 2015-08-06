@@ -2,12 +2,13 @@ Summary:	VTE terminal widget library for GTK+ 2
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE for GTK+ 2
 Name:		vte0
 Version:	0.28.2
-Release:	14
+Release:	15
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.28/vte-%{version}.tar.bz2
 # Source0-md5:	f07a4bf943194f94b7f142db8f7f36dc
 Patch0:		vte-alt-meta.patch
+Patch1:		repaint-bug.patch
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
@@ -121,6 +122,7 @@ Pliki programistyczne wiązań Pythona do VTE.
 %prep
 %setup -q -n vte-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %configure \
