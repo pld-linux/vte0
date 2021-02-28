@@ -82,9 +82,7 @@ Summary:	VTE API documentation - GTK+ 2.x version
 Summary(pl.UTF-8):	Dokumentacja API VTE - wersja dla GTK+ 2.x
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 VTE API documentation - GTK+ 2.x version.
