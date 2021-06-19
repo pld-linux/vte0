@@ -5,7 +5,7 @@ Version:	0.28.2
 Release:	19
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.28/vte-%{version}.tar.bz2
+Source0:	https://download.gnome.org/sources/vte/0.28/vte-%{version}.tar.bz2
 # Source0-md5:	f07a4bf943194f94b7f142db8f7f36dc
 Patch0:		vte-alt-meta.patch
 Patch1:		repaint-bug.patch
@@ -13,6 +13,7 @@ Patch2:		vte-0.28.2-control.patch
 Patch3:		vte-0.28.2-limit-arguments.patch
 Patch4:		vte-0.28.2-paste-fix.diff
 Patch5:		vte-python-bugfixes.patch
+URL:		https://wiki.gnome.org/Apps/Terminal/VTE
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
@@ -28,14 +29,13 @@ BuildRequires:	ncurses-devel
 BuildRequires:	pango-devel >= 1:1.22.0
 BuildRequires:	pkgconfig
 BuildRequires:	python-pygtk-devel >= 2:2.12.0
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.592
 Requires(pre):	utempter
 Requires:	glib2 >= 1:2.28.0
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	pango >= 1:1.22.0
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -98,7 +98,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	python-libs
 Requires:	python-pygtk-gtk >= 2:2.12.0
 Provides:	python-vte
-Obsoletes:	python-vte
+Obsoletes:	python-vte < 0.30
 
 %description -n python-vte0
 Python VTE library.
@@ -113,7 +113,7 @@ Group:		Development/Languages/Python
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	python-vte0 = %{version}-%{release}
 Provides:	python-vte-devel
-Obsoletes:	python-vte-devel
+Obsoletes:	python-vte-devel < 0.30
 
 %description -n python-vte0-devel
 Development files for VTE Python bindings.
@@ -132,7 +132,7 @@ Pliki programistyczne wiązań Pythona do VTE.
 
 %build
 %configure \
-	--libexecdir=%{_libdir}/vte-0.0 \
+	--libexecdir=%{_libexecdir}/vte-0.0 \
 	--with-gtk=2.0 \
 	--disable-silent-rules \
 	--enable-gtk-doc \
@@ -165,9 +165,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/vte
 %attr(755,root,root) %{_libdir}/libvte.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libvte.so.9
-%dir %{_libdir}/vte-0.0
-%attr(2755,root,utmp) %{_libdir}/vte-0.0/gnome-pty-helper
 %{_libdir}/girepository-1.0/Vte-0.0.typelib
+%dir %{_libexecdir}/vte-0.0
+%attr(2755,root,utmp) %{_libexecdir}/vte-0.0/gnome-pty-helper
 %{_datadir}/vte
 
 %files devel
